@@ -43,7 +43,7 @@ Alert 1 is implemented as follows:
 
 #### Name of Alert 2
 Alert 2 is implemented as follows:
-  - **Metric**: TODO
+  - **Metric**: packetbeat
   - **Threshold**: TODO
   - **Vulnerability Mitigated**: TODO
   - **Reliability**: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
