@@ -19,7 +19,6 @@ The following machines were identified on the network:
   - **Operating System**: ELk
   - **Purpose**: Capture and Monitor systems logs for Capstone server
   - **IP Address**: 192.168.1.100
-- Etc.
 
 ### Description of Targets
 _TODO: Answer the questions below._
@@ -37,23 +36,22 @@ _TODO: Replace `Alert 1` with the name of the alert._
 
 Alert 1 is implemented as follows:
   - **Metric**: packetbeat
-  - **Threshold**: top 5 'http.response.status_code
+  - **Threshold**: Above 400
   - **Vulnerability Mitigated**: top 5 'http.response.status_code' IS ABOVE 400 FOR THE LAST 5 minutes
   - **Reliability**: high reliability.
 
 #### Name of Alert 2
 Alert 2 is implemented as follows:
   - **Metric**: packetbeat
-  - **Threshold**: TODO
-  - **Vulnerability Mitigated**: TODO
-  - **Reliability**: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
-
+  - **Threshold**: Above 3500
+  - **Vulnerability Mitigated**:WHEN sum() of http.request.bytes OVER all documents IS ABOVE 3500 FOR THE LAST 1 minute
+  - **Reliability**: medium
 #### Name of Alert 3
 Alert 3 is implemented as follows:
-  - **Metric**: TODO
-  - **Threshold**: TODO
-  - **Vulnerability Mitigated**: TODO
-  - **Reliability**: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
+  - **Metric**: metricbeat
+  - **Threshold**: Above 0.5
+  - **Vulnerability Mitigated**: WHEN max() OF system.process.cpu.total.pct OVER all documents IS ABOVE 0.5 FOR THE LAST 5 minutes
+  - **Reliability**: medium
 
 _TODO Note: Explain at least 3 alerts. Add more if time allows._
 
@@ -63,11 +61,11 @@ _TODO_:
 
 The logs and alerts generated during the assessment suggest that this network is susceptible to several active threats, identified by the alerts above. In addition to watching for occurrences of such threats, the network should be hardened against them. The Blue Team suggests that IT implement the fixes below to protect the network:
 - Vulnerability 1
-  - **Patch**: TODO: E.g., _install `special-security-package` with `apt-get`_
-  - **Why It Works**: TODO: E.g., _`special-security-package` scans the system for viruses every day_
+  - **Patch**: Use a Web Application Firewall(WAF)
+  - **Why It Works**: WAFs can block suspicious login attempts coming from a single IP address
 - Vulnerability 2
-  - **Patch**: TODO: E.g., _install `special-security-package` with `apt-get`_
-  - **Why It Works**: TODO: E.g., _`special-security-package` scans the system for viruses every day_
+  - **Patch**: Add salt to all hashes/passwords
+  - **Why It Works**: It'll add another layer of protection
 - Vulnerability 3
-  - **Patch**: TODO: E.g., _install `special-security-package` with `apt-get`_
-  - **Why It Works**: TODO: E.g., _`special-security-package` scans the system for viruses every day_
+  - **Patch**: Limit file access and block unused ports
+  - **Why It Works**: All network ports should stay closed and should only be opened when needed for applications and services. Certain services come with configurations that require some ports open for communication through the API. 
